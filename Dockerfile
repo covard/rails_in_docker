@@ -6,7 +6,7 @@ RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
   nodejs
 
 # cache the gemfile seperate
-COPY Gemfile* /usr/src/app
+COPY Gemfile* /usr/src/app/
 
 # this tells container to cd into app directory
 WORKDIR /usr/src/app
