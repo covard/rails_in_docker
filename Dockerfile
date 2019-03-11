@@ -1,6 +1,8 @@
 # base image
 FROM ruby:2.6
 
+LABEL maintainer="ovardcj@gmail.com"
+
 # update packages
 RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
   nodejs
