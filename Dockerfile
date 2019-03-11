@@ -2,10 +2,8 @@
 FROM ruby:2.6
 
 # update packages
-RUN apt-get update -yqq
-
-# install node but only needed dependencies
-RUN apt-get install -yqq --no-install-recommends nodejs
+RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
+  nodejs
 
 # copy app dir into /usr/src/app in container
 COPY . /usr/src/app/
