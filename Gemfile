@@ -44,6 +44,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   # this is for the rails system tests that are new as of rails 5.1
   gem 'capybara', '~> 3.7'
+  gem 'selenium-webdriver', '~> 3.14'
 end
 
 group :development do
