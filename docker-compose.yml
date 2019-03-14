@@ -36,8 +36,8 @@ services:
     image: selenium/standalone-chrome-debug
     logging:
       driver: none
-      ports:
-        - 5900:5900
+    ports:
+      - 5900:5900
 
 volumes:
   db_data:
