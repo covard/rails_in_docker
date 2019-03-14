@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  web:
+    image: covard/myapp_web:v1.0
+    ports:
+      - "80:3000"
+    env_file:
+      - .env/development/database
+      - .env/development/web
+  redis:
+    image: redis
+  database:
+    image: postgres
+    env_file:
+      - .env/development/database
+    volumes:
+      - db_data:/var/lib/postgresql/data
+volumes:
+  db_data:
