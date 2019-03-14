@@ -58,4 +58,9 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  # use rack_test for system tests until we need selenium
+  config.before(:each, type: :system) do
+    drivine_by :rack_test
+  end
 end
