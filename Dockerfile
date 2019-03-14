@@ -36,6 +36,6 @@ RUN bundle install
 COPY . /usr/src/app/
 
 # for the irritating times the server doesn't clean up when container shutsdown
-ENTRYPOINT["./docker-entrypoint.sh"]
+ENTRYPOINT ["./docker-entrypoint.sh"]
 
 CMD ["bin/rails", "s", "-b", "0.0.0.0"]
