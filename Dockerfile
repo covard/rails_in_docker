@@ -18,6 +18,8 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | \
 
 # install packages
 RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
+  # netcat is used with the 'wait-for' tcp connection checking
+  netcat \
   nodejs \
   yarn
 
@@ -34,6 +36,9 @@ RUN bundle install
 
 # copy app dir into /usr/src/app in container
 COPY . /usr/src/app/
+
+# file should retain perms (except on windows) putthing this here to be explicit (or if some shlub is using windows)
+RUN ["chmod", "+x", "/usr/src/app/wait-for"]
 
 # for the irritating times the server doesn't clean up when container shutsdown
 ENTRYPOINT ["./docker-entrypoint.sh"]
