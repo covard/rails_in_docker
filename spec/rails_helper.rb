@@ -66,7 +66,10 @@ RSpec.configure do |config|
 
     # use selenium_chrome for system tests that require js (slower than rack_test)
     config.before(:each, type: :system, js: true) do
-      driven_by :selenium_chrome_in_container
+      # to watch the tests in VNC (macOS screen share) uncomment this line and comment the line below
+      # driven_by :selenium_chrome_in_container
+      driven_by :headless_selenium_chrome_in_container
+
       Capybara.server_host = '0.0.0.0'
       Capybara.server_port = 4000
       Capybara.app_host = 'http://web:4000'
