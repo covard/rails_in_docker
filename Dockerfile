@@ -7,9 +7,9 @@ LABEL maintainer="ovardcj@gmail.com"
 RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
   apt-transport-https
 
-# ensure we install an up to date version of node
+# ensure we install an up to date version of node needs node >= 6.0.0
 # see https://github.com/yarnpkg/yarn/issues/2888
-RUN curl -sL https://deb.nodesourse.com/setup_8.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 
 # ensure latest packages for yarn
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
@@ -17,7 +17,7 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | \
   tee /etc/apt/sources.list.d/yarn.list
 
 # install packages
-RUN apt-get update -yqq && apt-get install -yqq --no-instal-recommends \
+RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
   nodejs \
   yarn
 
