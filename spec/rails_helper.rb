@@ -7,6 +7,8 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
+require_relative './support/capybara.rb'
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -59,8 +61,17 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  # use rack_test for system tests until we need selenium
+  # use rack_test for system tests that don't need js
   config.before(:each, type: :system) do
+
+    # use selenium_chrome for system tests that require js (slower than rack_test)
+    config.before(:each, type: :system, js: true) do
+      driven_by :selenium_chrome_in_container
+      Capybara.server_host = '0.0.0.0'
+      Capybara.server_port = 4000
+      Capybara.app_host = 'http://web:4000'
+    end
+
     driven_by :rack_test
   end
 end
