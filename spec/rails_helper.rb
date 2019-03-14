@@ -61,6 +61,6 @@ RSpec.configure do |config|
 
   # use rack_test for system tests until we need selenium
   config.before(:each, type: :system) do
-    drivine_by :rack_test
+    driven_by :rack_test
   end
 end
