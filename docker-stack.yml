@@ -1,5 +1,15 @@
 version: '3'
 
+db-migrator:
+  image: covard/myapp_web:v1.1.0
+  command: ["./wait-for", "--timeout=300", "database:5432", "--", "bin/rails", "db:migrate"]
+  env_file:
+    - .env/production/database
+    - .env/production/web
+  deploy:
+    restart_policy:
+      condition: none
+
 services:
   web:
     image: covard/myapp_web:v1.0
