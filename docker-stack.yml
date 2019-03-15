@@ -2,12 +2,14 @@ version: '3'
 
 services:
   web:
-    image: covard/myapp_web:v1.1.4
+    image: covard/myapp_web:v1.1.5
     ports:
       - "80:3000"
     env_file:
       - .env/production/database
       - .env/production/web
+    deploy:
+      replicas: 2
   redis:
     image: redis
   database:
@@ -17,7 +19,7 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
   db-migrator:
-    image: covard/myapp_web:v1.1.4
+    image: covard/myapp_web:v1.1.5
     command: ["./wait-for", "--timeout=300", "database:5432", "--", "bin/rails", "db:migrate"]
     env_file:
       - .env/production/database
