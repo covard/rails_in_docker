@@ -38,6 +38,9 @@ COPY . /usr/src/app/
 # precompile assets
 RUN bin/rails assets:precompile
 
+# file should retain perms (except on windows) putthing this here to be explicit (or if some shlub is using windows)
+RUN ["chmod", "+x", "/usr/src/app/wait-for"]
+
 # for the irritating times the server doesn't clean up when container shutsdown
 ENTRYPOINT ["./docker-entrypoint.sh"]
 
